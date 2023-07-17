@@ -26,7 +26,7 @@ public class BaseSetUp {
     public BaseSetUp(String webHref){
         //setup for web
         this.driverPath= "src/main/resources/chromedriver.exe";
-        this.webHref= "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";;
+        this.webHref= "http://www.demo.guru99.com/V4/";;
         initBrowserDriver();
        /* WebDriverWait wait = new WebDriverWait(driver,20); //20 seconds
         wait.until(ExpectedConditions.elementToBeClickable(element));
