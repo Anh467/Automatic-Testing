@@ -10,7 +10,7 @@ import page.Managerhomepage;
 
 import java.time.Duration;
 
-public class TestLoginCC extends TestSetUp{
+public class TestLogin extends TestSetUp{
 
     @Test
     @DisplayName("TC01-Login successfully")
