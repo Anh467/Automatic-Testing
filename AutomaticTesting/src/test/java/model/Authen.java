@@ -5,28 +5,29 @@ import org.openqa.selenium.By;
 import java.util.ArrayList;
 
 public class Authen{
-    private By ele_UserName;
+    private By ele_UserID;
     private By ele_PassWord;
     private By ele_button;
 
-    public Authen(By ele_UserName, By ele_PassWord, By ele_button) {
-        this.ele_UserName = ele_UserName;
+    public Authen(By ele_UserID, By ele_PassWord, By ele_button) {
+        this.ele_UserID = ele_UserID;
         this.ele_PassWord = ele_PassWord;
         this.ele_button = ele_button;
     }
-    public void setCredential(String userName, String passWord){
-        this.ele_UserName = ele_UserName;
+    public void setCredential(String UserID, String passWord){
+        this.ele_UserID = ele_UserID;
         this.ele_PassWord = ele_PassWord;
     }
 
 
 
-    public By getEle_UserName() {
-        return ele_UserName;
+    public By getEle_UserID() {
+        return ele_UserID;
     }
 
-    public void setEle_UserName(By ele_UserName) {
-        this.ele_UserName = ele_UserName;
+
+    public void setEle_UserID(By ele_UserID) {
+        this.ele_UserID = ele_UserID;
     }
 
     public By getEle_PassWord() {
