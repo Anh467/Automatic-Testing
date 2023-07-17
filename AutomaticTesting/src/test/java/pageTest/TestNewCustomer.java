@@ -1,14 +1,14 @@
 package pageTest;
 
+import base.TestSetUp;
 import org.junit.jupiter.api.*;
 import page.Addcustomerpage;
 import page.CustomerRegMsg;
 import page.Managerhomepage;
 
-import java.util.Random;
 import java.util.UUID;
 
-public class TestNewCustomer extends TestSetUp{
+public class TestNewCustomer extends TestSetUp {
     Managerhomepage managerhomepage;
     @BeforeEach
     public void login() {

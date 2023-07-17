@@ -1,16 +1,12 @@
 package pageTest;
 
+import base.TestSetUp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import page.LoginPage;
 import page.Managerhomepage;
 
-import java.time.Duration;
-
-public class TestLogin extends TestSetUp{
+public class TestLogin extends TestSetUp {
 
     @Test
     @DisplayName("TC01-Login successfully")
