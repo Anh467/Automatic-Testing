@@ -1,0 +1,37 @@
+package page;
+
+import model.Authen;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class WithdrawPage extends Page {
+    private Authen authen;
+
+    public WithdrawPage(WebDriver driver, Authen authen) {
+        super(driver);
+        this.authen = authen;
+    }
+
+    public boolean withdraw(String accountId, String amount, String description) throws Exception {
+        WebElement ele_withdrawalLink = super.getElement(By.linkText("Withdrawal"));
+        super.clickEvent(ele_withdrawalLink);
+
+        WebElement ele_accountId = super.getElement(authen.getEle_UserID());
+        super.sendKey(ele_accountId, accountId);
+
+        WebElement ele_amount = super.getElement(By.name("ammount"));
+        super.sendKey(ele_amount, amount);
+
+        WebElement ele_description = getElement(By.name("desc"));
+        sendKey(ele_description, description);
+
+        WebElement ele_submit = super.getElement(authen.getEle_button());
+        super.clickEvent(ele_submit);
+
+        // Kiểm tra logic xử lý withdraw và trả về kết quả tương ứng
+        // ...
+
+        return true; // Hoặc false tùy theo kết quả kiểm tra
+    }
+}
