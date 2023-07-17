@@ -1,0 +1,148 @@
+package pageTest;
+
+import base.BaseSetUp;
+import model.Authen;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import page.WithdrawPage;
+
+public class WithdrawPageTest extends BaseSetUp {
+    private WebDriver driver;
+    private WithdrawPage withdrawPage;
+    private Authen authen;
+
+    public WithdrawPageTest(String webHref) {
+        super(webHref);
+        this.authen = getAuthen();
+    }
+
+    public Authen getAuthen() {
+        By ele_button = By.name("AccSubmit");
+        By ele_customerId = By.name("accountno");
+        By ele_accountId = By.name("ammount");
+        // Create authentication element
+        return new Authen(ele_customerId, ele_accountId, ele_button);
+    }
+
+    final String USERID = "mngr515377";
+    final String PASSWORD = "umezEte";
+    public void signin() {
+        By uid = By.name("uid");
+        By password = By.name("password");
+        By btn_login = By.name("btnLogin");
+        driver.findElement(uid).sendKeys(this.USERID);
+        driver.findElement(password).sendKeys(this.PASSWORD);
+        driver.findElement(btn_login).click();
+    }
+
+    public String getAlert() {
+        Alert alert = super.getDriver().switchTo().alert();
+        String alertText = alert.getText();
+        return alertText;
+    }
+
+    @BeforeClass
+    public void setUp() {
+        this.driver = super.getDriver();
+        this.authen = getAuthen();
+        signin();
+    }
+
+    @Test()
+    @DisplayName("Withdraw Test successfull")
+    public void Test1() throws Exception {
+        String accountId = "124344";
+        String amount = "1000";
+        String description = "aaaaaaaaaaa";
+        withdrawPage = new WithdrawPage(super.getDriver(), authen);
+        boolean result = withdrawPage.withdraw(accountId, amount, description);
+        String pageSource = driver.getPageSource();
+        boolean isTransactionDetailsPresent = pageSource.contains("Transaction details of Withdrawal for Account");
+        Assert.assertTrue(isTransactionDetailsPresent, "FAIL: Transaction details of Withdrawal for Account");
+        Assert.assertTrue(result);
+    }
+
+    @Test()
+    @DisplayName("Withdraw Test With Empty accountid")
+    public void Test2() throws Exception {
+        String accountId = "";
+        String amount = "100";
+        String description = "aaaaaaaaaaa";
+        withdrawPage = new WithdrawPage(super.getDriver(), authen);
+        boolean result = withdrawPage.withdraw(accountId, amount, description);
+        String alert = getAlert();
+        boolean check = alert.trim().equals("Please fill all fields");
+        Assert.assertTrue(check);
+        Assert.assertEquals(true, result);
+    }
+
+    @Test()
+    @DisplayName("Withdraw Test with empty des")
+    public void Test3() throws Exception {
+        String accountId = "124344";
+        String amount = "100";
+        String description = "";
+        withdrawPage = new WithdrawPage(super.getDriver(), authen);
+        boolean result = withdrawPage.withdraw(accountId, amount, description);
+        String alert = getAlert();
+        boolean check = alert.trim().equals("Please fill all fields");
+        Assert.assertTrue(check);
+        Assert.assertEquals(true, result);
+    }
+
+    @Test()
+    @DisplayName("Withdraw Test with wrong accountid")
+    public void Test4() throws Exception {
+        String accountId = "123123123";
+        String amount = "100";
+        String description = "aaaaaaaaaaa";
+        withdrawPage = new WithdrawPage(super.getDriver(), authen);
+        boolean result = withdrawPage.withdraw(accountId, amount, description);
+        String alert = getAlert();
+        boolean check = alert.trim().equals("Account does not exist");
+        Assert.assertTrue(check);
+        Assert.assertEquals(true, result);
+    }
+
+
+    @Test()
+    @DisplayName("Withdraw Test with empty amount")
+    public void Test5() throws Exception {
+        String accountId = "123123";
+        String amount = "";
+        String description = "aaa";
+        withdrawPage = new WithdrawPage(super.getDriver (), authen);
+        boolean result = withdrawPage.withdraw(accountId, amount, description);
+       String alert = getAlert();
+       boolean check = alert.trim().equals("Please fill all fields");
+       Assert.assertTrue(check);
+       Assert.assertEquals(true, result);
+    }
+
+    @Test()
+    @DisplayName("Withdraw Test with wrong id and amount")
+    public void Test6() throws Exception {
+        String accountId = "aaa";
+        String amount = "aa";
+        String description = "aaa";
+        withdrawPage = new WithdrawPage(super.getDriver (), authen);
+        boolean result = withdrawPage.withdraw(accountId, amount, description);
+        String alert = getAlert();
+        boolean check = alert.trim().equals("Please fill all fields");
+        Assert.assertTrue(check);
+        Assert.assertEquals(true, result);
+    }
+
+    @AfterClass
+    public void quitBrowser() {
+       // super.driverQuit();
+    }
+}
