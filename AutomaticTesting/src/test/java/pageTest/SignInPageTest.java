@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 import page.SignInPage;
 
 public class SignInPageTest extends BaseSetUp {
-    String website= "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
+    String website= "http://www.demo.guru99.com/V4/";
     private WebDriver driver;
     public SignInPage signInPage;
     private Authen au;
@@ -26,8 +26,9 @@ public class SignInPageTest extends BaseSetUp {
         By ele_button= By.xpath("//button[@type='submit' and @class='oxd-button oxd-button--medium oxd-button--main orangehrm-login-button']");
         By ele_userName= By.name("username");
         By ele_passWord= By.name("password");
-        String UserName= "Admin";
-        String PassWord= "admin123";
+        String UserID = "mngr515377";
+        String Password = "umezEte";
+
         //Create credential element
         //String WebsiteHref, String UserName, String PassWord, By ele_UserName, By ele_PassWord, By ele_button
        return new Authen(ele_userName, ele_passWord, ele_button);
