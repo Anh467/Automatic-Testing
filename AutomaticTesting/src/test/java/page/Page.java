@@ -1,20 +1,7 @@
 package page;
-import model.Authen;
-import model.Credential;
-import model.Step;
-import org.junit.jupiter.api.Test;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.time.Duration;
-import java.util.ArrayList;
-
-
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class Page {
@@ -24,16 +11,17 @@ public class Page {
         this.driver = driver;
     }
 
-    public WebElement getElement(By by){
-        System.out.println("done get element:");
-        return this.driver.findElement(by);
+    public WebElement getElement(By by) {
+        return driver.findElement(by);
     }
-    public void sendKey(WebElement webElement, String key){
+
+    public void sendKey(WebElement webElement, String key) {
         webElement.sendKeys(key);
         System.out.println("done send keys:");
     }
-    public void clickEvent(By ele_button){
-        this.driver.findElement(ele_button).click();
+
+    public void clickEvent(WebElement element) {
+        element.click();
         System.out.println("done click:");
     }
 
