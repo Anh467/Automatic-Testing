@@ -3,6 +3,7 @@ import model.Authen;
 import model.Credential;
 import model.Step;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,7 +27,7 @@ public class BaseSetUp {
     public BaseSetUp(String webHref){
         //setup for web
         this.driverPath= "src/main/resources/chromedriver.exe";
-        this.webHref= "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";;
+        this.webHref= "https://www.demo.guru99.com/V4/index.php";;
         initBrowserDriver();
        /* WebDriverWait wait = new WebDriverWait(driver,20); //20 seconds
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -61,5 +62,26 @@ public class BaseSetUp {
     public static void main(String[] args){
         //E4();
         //E5();
+    }
+    public String getAlert(){
+        Alert alert =  this.driver.switchTo().alert();
+        String alertText = alert.getText();
+        return alertText;
+    }
+
+    public String getWebHref() {
+        return webHref;
+    }
+
+    public void setWebHref(String webHref) {
+        this.webHref = webHref;
+    }
+
+    public String getDriverPath() {
+        return driverPath;
+    }
+
+    public void setDriverPath(String driverPath) {
+        this.driverPath = driverPath;
     }
 }

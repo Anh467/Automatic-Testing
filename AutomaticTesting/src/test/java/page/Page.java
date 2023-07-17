@@ -12,12 +12,13 @@ import java.time.Duration;
 import java.util.ArrayList;
 
 
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class Page {
+public class    Page {
     private WebDriver driver;
 
     public Page(WebDriver driver) {
@@ -43,5 +44,9 @@ public class Page {
 
     public void setDriver(WebDriver driver) {
         this.driver = driver;
+    }
+    public void selectioṇ̣(WebElement webElement, String param){
+        Select selectAccount = new Select(webElement);
+        selectAccount.selectByVisibleText(param);
     }
 }

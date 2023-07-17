@@ -34,6 +34,7 @@ public class SignInPageTest extends BaseSetUp {
     }
     @BeforeClass
     public void setUp(){
+        super.setWebHref(website);
         this.driver= super.getDriver();
         this.au= getAuthen();
         //["Admin";"admgin123"] ["InvalidUser";"invalidpassword"] ["InvalidUser";"invalidpassword"]["Admin";"admin 123"]
