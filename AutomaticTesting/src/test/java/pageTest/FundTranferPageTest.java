@@ -231,8 +231,18 @@ public class FundTranferPageTest extends BaseSetUp{
         tranferPage = new FundTranferPage(super.getDriver(), fundTranfer);
         tranferPage.Tranfer(payers, payees, Amount, Decript);
 
-        System.out.println(getAlert());
-        Assertions.assertTrue(getAlert().contains("Please fill all fields"), "Alert text is incorrect");
+        WebElement errorMessageElement1 = super.getDriver().findElement(By.id("message10"));
+        String errorMessage1 = errorMessageElement1.getText();
+        WebElement errorMessageElement2 = super.getDriver().findElement(By.id("message11"));
+        String errorMessage2 = errorMessageElement2.getText();
+        WebElement errorMessageElement3 = super.getDriver().findElement(By.id("message1"));
+        String errorMessage3 = errorMessageElement3.getText();
+        WebElement errorMessageElement4 = super.getDriver().findElement(By.id("message17"));
+        String errorMessage4 = errorMessageElement4.getText();
+        Assertions.assertTrue(errorMessage1.contains("Payers Account Number must not be blank")
+                && errorMessage2.contains("Payees Account Number must not be blank")
+                && errorMessage3.contains("Amount field must not be blank")
+                && errorMessage4.contains("Description can not be blank"), "false");
     }
 
     @Test()
