@@ -1,13 +1,17 @@
 package pageTest;
 
 import base.TestSetUp;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import page.Managerhomepage;
 
 public class TestLogin extends TestSetUp {
-
+    @AfterEach
+    void ClosePage(){
+        this.Close();
+    }
     @Test
     @DisplayName("TC01-Login successfully")
     public void testLoginSuccessfully(){
