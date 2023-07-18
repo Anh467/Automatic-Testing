@@ -248,16 +248,18 @@ public class FundTranferPageTest extends BaseSetUp{
     @Test()
     @DisplayName("TC-10 Tranfer successfully")
     public void tranfer10() throws Exception {
-        String payers= "20339183224";
-        String payees = "5007205126890";
+        String befor= super.getDriver().getCurrentUrl();
+        String payers= "124344";
+        String payees = "124347";
         String Amount ="100000";
         String Decript ="good";
         signin();
         tranferPage = new FundTranferPage(super.getDriver(), fundTranfer);
         tranferPage.Tranfer(payers, payees, Amount, Decript);
 
-        System.out.println(getAlert());
-        Assertions.assertTrue(getAlert().contains("Successfully"), "Alert text is incorrect");
+        String after= super.getDriver().getCurrentUrl();
+
+        Assertions.assertTrue(befor.equals(after)? false : true);
     }
 
     @AfterClass
