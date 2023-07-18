@@ -100,12 +100,15 @@ public class FundTranferPageTest extends BaseSetUp{
         signin();
 
         tranferPage = new FundTranferPage(super.getDriver(), fundTranfer);
-        tranferPage.Tranfer(payers, payees, Amount, Decript);
+        tranferPage.Tranferwithoutclick(payers, payees, Amount, Decript);
 
-        System.out.println(getAlert());
-        Assertions.assertTrue(getAlert().contains("Please fill all fields"), "Alert text is incorrect");
+//        System.out.println(getAlert());
+//        Assertions.assertTrue(getAlert().contains("Please fill all fields"), "Alert text is incorrect");
 
-
+        WebElement errorMessageElement = super.getDriver().findElement(By.id("message10"));
+        String errorMessage = errorMessageElement.getText();
+        System.out.println(errorMessage);
+        Assertions.assertTrue(errorMessage.contains("Characters are not allowed"), "false");
     }
 
     @Test()
@@ -118,10 +121,12 @@ public class FundTranferPageTest extends BaseSetUp{
         signin();
 
         tranferPage = new FundTranferPage(super.getDriver(), fundTranfer);
-        tranferPage.Tranfer(payers, payees, Amount, Decript);
+        tranferPage.Tranferwithoutclick(payers, payees, Amount, Decript);
 
-        System.out.println(getAlert());
-        Assertions.assertTrue(getAlert().contains("Please fill all fields"), "Alert text is incorrect");
+        WebElement errorMessageElement = super.getDriver().findElement(By.id("message11"));
+        String errorMessage = errorMessageElement.getText();
+        System.out.println(errorMessage);
+        Assertions.assertTrue(errorMessage.contains("Characters are not allowed"), "false");
     }
 
     @Test()
@@ -134,18 +139,20 @@ public class FundTranferPageTest extends BaseSetUp{
         signin();
 
         tranferPage = new FundTranferPage(super.getDriver(), fundTranfer);
-        tranferPage.Tranfer(payers, payees, Amount, Decript);
+        tranferPage.Tranferwithoutclick(payers, payees, Amount, Decript);
 
-        System.out.println(getAlert());
-        Assertions.assertTrue(getAlert().contains("Please fill all fields"), "Alert text is incorrect");
+        WebElement errorMessageElement = super.getDriver().findElement(By.id("message1"));
+        String errorMessage = errorMessageElement.getText();
+        System.out.println(errorMessage);
+        Assertions.assertTrue(errorMessage.contains("Characters are not allowed"), "false");
 
     }
 
     @Test()
     @DisplayName("TC-05 Tranfer description blank")
     public void tranfer5() throws Exception {
-        String payers= "012344";
-        String payees = "012345";
+        String payers= "012344334";
+        String payees = "012345345";
         String Amount ="100";
         String Decript ="";
         signin();
@@ -165,46 +172,52 @@ public class FundTranferPageTest extends BaseSetUp{
     @DisplayName("TC-06 Tranfer Payers blank ")
     public void tranfer6() throws Exception {
         String payers= "";
-        String payees = "012345";
+        String payees = "0123454435";
         String Amount ="100";
         String Decript ="good";
         signin();
 
         tranferPage = new FundTranferPage(super.getDriver(), fundTranfer);
-        tranferPage.Tranfer(payers, payees, Amount, Decript);
+        tranferPage.Tranferwithoutclick(payers, payees, Amount, Decript);
 
-        System.out.println(getAlert());
-        Assertions.assertTrue(getAlert().contains("Please fill all fields"), "Alert text is incorrect");
+        WebElement errorMessageElement = super.getDriver().findElement(By.id("message10"));
+        String errorMessage = errorMessageElement.getText();
+        System.out.println(errorMessage);
+        Assertions.assertTrue(errorMessage.contains("Payers Account Number must not be blank"), "false");
     }
 
     @Test()
     @DisplayName("TC-07 Payees blank")
     public void tranfer7() throws Exception {
-        String payers= "012344";
+        String payers= "012344345";
         String payees = "";
         String Amount ="100";
         String Decript ="good";
         signin();
         tranferPage = new FundTranferPage(super.getDriver(), fundTranfer);
-        tranferPage.Tranfer(payers, payees, Amount, Decript);
+        tranferPage.Tranferwithoutclick(payers, payees, Amount, Decript);
 
-        System.out.println(getAlert());
-        Assertions.assertTrue(getAlert().contains("Please fill all fields"), "Alert text is incorrect");
+        WebElement errorMessageElement = super.getDriver().findElement(By.id("message11"));
+        String errorMessage = errorMessageElement.getText();
+        System.out.println(errorMessage);
+        Assertions.assertTrue(errorMessage.contains("Payees Account Number must not be blank"), "false");
     }
 
     @Test()
     @DisplayName("TC-08 Amount blank")
     public void tranfer8() throws Exception {
-        String payers= "012344";
-        String payees = "012355";
+        String payers= "12344565";
+        String payees = "12355345";
         String Amount ="";
         String Decript ="good";
         signin();
         tranferPage = new FundTranferPage(super.getDriver(), fundTranfer);
-        tranferPage.Tranfer(payers, payees, Amount, Decript);
+        tranferPage.Tranferwithoutclick(payers, payees, Amount, Decript);
 
-        System.out.println(getAlert());
-        Assertions.assertTrue(getAlert().contains("Please fill all fields"), "Alert text is incorrect");
+        WebElement errorMessageElement = super.getDriver().findElement(By.id("message1"));
+        String errorMessage = errorMessageElement.getText();
+        System.out.println(errorMessage);
+        Assertions.assertTrue(errorMessage.contains("Amount field must not be blank"), "false");
     }
 
     @Test()
@@ -223,7 +236,7 @@ public class FundTranferPageTest extends BaseSetUp{
     }
 
     @Test()
-    @DisplayName("TC-10 Tranfer account does not exist!!!")
+    @DisplayName("TC-10 Tranfer successfully")
     public void tranfer10() throws Exception {
         String payers= "20339183224";
         String payees = "5007205126890";
@@ -240,6 +253,6 @@ public class FundTranferPageTest extends BaseSetUp{
     @AfterClass
     public void quitBrowser(){
 
-        super.driverQuit();
+        //super.driverQuit();
     }
 }
